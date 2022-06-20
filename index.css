@@ -1,0 +1,102 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --clr-light: #fff;
+    --clr-dark: #303030;
+    --clr-accent: #16e0bd;
+    
+    --fs-h1: 4.5rem;
+    --fs-h2: 3.75rem;
+    --fs-h3: 1.5rem;
+    --fs-body: 1.125rem;
+
+    --bs: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
+          0.125em 0.125em 0.25em rgba(0,0,0,.15);
+}
+
+
+body {
+    background: var(--clr-dark);
+    color: var(--clr-light);
+    margin: auto auto;
+    font-family: var(--ff-primary);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 90vw;
+    /* border: 2px solid white; */
+    font-size: 2em;
+}
+
+
+
+.calc {
+    /* border: 2px solid red; */
+    height: 500px;
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(25%, 25%, 25%, 25%);
+    grid-template-rows: repeat(7, 1fr);
+    grid-template-areas: 
+    "display display display display"
+    "display display display display"
+    "plus minus devide multiply"
+    "one two three equal"
+    "four five six equal"
+    "seven eight nine equal"
+    "zero dot c equal" 
+    ;
+
+}
+
+.display {
+    grid-area: display;
+    background: var(--clr-light);
+    grid-area: display;
+    font-size: var(--fs-h2);
+    color: #303030;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    letter-spacing: 2px;
+    
+}
+.btn {
+    display: block;
+    
+}
+
+.plus {grid-area: plus;}
+.minus {grid-area: minus;}
+.devide {grid-area: devide;}
+.multiply {grid-area: multiply;}
+.one {grid-area: one;}
+.two {grid-area: two;}
+.three {grid-area: three;}
+.four {grid-area: four;}
+.five {grid-area: five;}
+.six {grid-area: six;}
+.seven {grid-area: seven;}
+.eight { grid-area: eight; }
+.nine { grid-area: nine; }
+.zero { grid-area: zero; }
+.dot { grid-area: dot; }
+.c { grid-area: c; }
+
+
+.equal-sign {
+    grid-area: equal;
+   
+    grid-template-rows: span 4;
+    
+    
+}
