@@ -1,15 +1,14 @@
 const numberBtn = document.querySelectorAll(".number");
 const mainDisplay = document.getElementById("display");
-const secondaryDisplay = document.getElementById("display-two");
 const clearBtn = document.getElementById("clear");
 const plusBtn = document.getElementById("plus");
 const equalBtn = document.querySelector(".equal-sign");
 const operands = document.querySelectorAll(".operator");
-let currentNumber = [];
+
 let displayNumbers = "";
-let initialNumber = 0;
-let secondaryNumber = 0;
-let total = 0;
+let previousNumber = 0;
+let currentNumber = 0;
+let mathOperator = "";
 
 numberBtn.forEach((button) => {
   button.addEventListener("click", () => {
@@ -18,28 +17,37 @@ numberBtn.forEach((button) => {
   });
 });
 
-plusBtn.addEventListener("click", () => {
-  initialNumber = parseFloat(displayNumbers);
-  displayNumbers = ""; //result
-  renderDisplay();
-  currentNumber.push(initialNumber);
-  console.log(currentNumber);
+operands.forEach((operator) => {
+  operator.addEventListener("click", () => {
+    mathOperator = operator.textContent;
+    previousNumber = parseFloat(displayNumbers);
+    displayNumbers = "";
+    renderDisplay();
+    console.log(`prev num ${previousNumber}`);
+  });
 });
 
 equalBtn.addEventListener("click", () => {
-  console.log("button clicked");
-  secondaryNumber = parseFloat(displayNumbers);
-  currentNumber.push(secondaryNumber);
-  displayNumbers = "";
-  renderDisplay();
-  const result = currentNumber.reduce((num, nextNum) => {
-    return num + nextNum;
-  });
-  displayNumbers = result;
+  currentNumber = parseFloat(displayNumbers);
+
+  if (mathOperator === "+") {
+    displayNumbers = currentNumber + previousNumber;
+  } else if (mathOperator === "-") {
+    displayNumbers = previousNumber - currentNumber;
+  } else if (mathOperator === "/") {
+    displayNumbers = previousNumber / currentNumber;
+  } else if (mathOperator === "x") {
+    displayNumbers = previousNumber * currentNumber;
+  }
   renderDisplay();
 });
 
-equalBtn.addEventListener("click", {});
+clearBtn.addEventListener("click", () => {
+  displayNumbers = "";
+  currentNumber = 0;
+  previousNumber = 0;
+  renderDisplay();
+});
 
 function renderDisplay() {
   mainDisplay.textContent = displayNumbers;
@@ -49,19 +57,3 @@ function clearDisplay() {
   displayNumbers = "";
   mainDisplay.textContent = "";
 }
-
-clearBtn.addEventListener("click", () => {
-  displayNumbers = "";
-  result = 0;
-  initialNumber = 0;
-  secondaryNumber = 0;
-  currentNumber = [];
-  renderDisplay();
-});
-
-//working on this
-// function addNumbers() {
-//   currentNumber.reduce((num, nextNum) => {
-//     return num + nextNum;
-//   });
-// }
