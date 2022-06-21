@@ -8,6 +8,7 @@ const operands = document.querySelectorAll(".operator");
 let displayNumbers = "";
 let previousNumber = 0;
 let currentNumber = 0;
+let mathOperator = "";
 
 numberBtn.forEach((button) => {
   button.addEventListener("click", () => {
@@ -18,6 +19,7 @@ numberBtn.forEach((button) => {
 
 operands.forEach((operator) => {
   operator.addEventListener("click", () => {
+    mathOperator = operator.textContent;
     previousNumber = parseFloat(displayNumbers);
     displayNumbers = "";
     renderDisplay();
@@ -27,32 +29,25 @@ operands.forEach((operator) => {
 
 equalBtn.addEventListener("click", () => {
   currentNumber = parseFloat(displayNumbers);
-  displayNumbers = currentNumber + previousNumber;
+
+  if (mathOperator === "+") {
+    displayNumbers = currentNumber + previousNumber;
+  } else if (mathOperator === "-") {
+    displayNumbers = previousNumber - currentNumber;
+  } else if (mathOperator === "/") {
+    displayNumbers = previousNumber / currentNumber;
+  } else if (mathOperator === "x") {
+    displayNumbers = previousNumber * currentNumber;
+  }
   renderDisplay();
 });
 
-// plusBtn.addEventListener("click", () => {
-//   initialNumber = parseFloat(displayNumbers);
-//   displayNumbers = ""; //result
-//   renderDisplay();
-//   currentNumber.push(initialNumber);
-//   console.log(currentNumber);
-// });
-
-// equalBtn.addEventListener("click", () => {
-//   console.log("button clicked");
-//   secondaryNumber = parseFloat(displayNumbers);
-//   currentNumber.push(secondaryNumber);
-//   displayNumbers = "";
-//   renderDisplay();
-//   const result = currentNumber.reduce((num, nextNum) => {
-//     return num + nextNum;
-//   });
-//   displayNumbers = result;
-//   renderDisplay();
-// });
-
-// equalBtn.addEventListener("click", {});
+clearBtn.addEventListener("click", () => {
+  displayNumbers = "";
+  currentNumber = 0;
+  previousNumber = 0;
+  renderDisplay();
+});
 
 function renderDisplay() {
   mainDisplay.textContent = displayNumbers;
@@ -62,19 +57,3 @@ function clearDisplay() {
   displayNumbers = "";
   mainDisplay.textContent = "";
 }
-
-// clearBtn.addEventListener("click", () => {
-//   displayNumbers = "";
-//   result = 0;
-//   initialNumber = 0;
-//   secondaryNumber = 0;
-//   currentNumber = [];
-//   renderDisplay();
-// });
-
-// //working on this
-// // function addNumbers() {
-// //   currentNumber.reduce((num, nextNum) => {
-// //     return num + nextNum;
-// //   });
-// // }
