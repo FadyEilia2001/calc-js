@@ -23,7 +23,7 @@ operands.forEach((operator) => {
     previousNumber = parseFloat(displayNumbers);
     displayNumbers = "";
     renderDisplay();
-    console.log(`prev num ${previousNumber}`);
+    
   });
 });
 
