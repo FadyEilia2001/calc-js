@@ -47,6 +47,7 @@ body {
     grid-template-areas: 
     "display display display display"
     "display display display display"
+    /* "displayTwo displayTwo displayTwo displayTwo" */
     "plus minus devide multiply"
     "one two three equal"
     "four five six equal"
@@ -59,7 +60,6 @@ body {
 .display {
     grid-area: display;
     background: var(--clr-light);
-    grid-area: display;
     font-size: var(--fs-h2);
     color: #303030;
     padding-left: 25px;
@@ -70,10 +70,20 @@ body {
     letter-spacing: 2px;
     
 }
-.btn {
-    display: block;
-    
+
+.display-two{
+    grid-area: displayTwo;
+    background: var(--clr-light);
+    font-size: var(--fs-h2);
+    color: #303030;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    letter-spacing: 2px;
 }
+
 
 .plus {grid-area: plus;}
 .minus {grid-area: minus;}
@@ -100,3 +110,4 @@ body {
     
     
 }
+
